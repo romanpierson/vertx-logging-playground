@@ -16,14 +16,20 @@ For now those features and functionalities are demoed
 
 As gradle vertx plugin is used you can just start the application with 
 
-`gradle vertxRun`
+```java
+gradle vertxRun
+```java
 
 or debug it with 
 
-`gradle vertxDebug`
+```java
+gradle vertxDebug
+```java
 
 ## Execute sample request
 
 This runs a simple GET request on the app that will produce some useful access log
 
-`curl http://localhost:8080/test?foo=bar -v -H "Cookie: cookie1=cookie1Value; cookie2=cookie2Value"` 
+```java
+curl http://localhost:8080/test?foo=bar -v -H "Cookie: cookie1=cookie1Value; cookie2=cookie2Value"
+```java
