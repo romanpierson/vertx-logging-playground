@@ -4,6 +4,9 @@ configurations:
     logPattern: '"%t" %{msec}t "%{dd-MMM-yyyy HH:mm}t" "%{EEEEE, dd MMMMM yyyy HH:mm:ss zzz|Pacific/Honolulu|en}t" "%{EEEEE, dd MMMMM yyyy HH:mm:ss zzz|Europe/London|fr}t" %m cs-method %s sc-status %T %D %h %v %p %B %b "%r" %U cs-uri-stem %q cs-uri-query cs-uri %H %t "%{User-Agent}i" "%{Accept}i" "%{Content-Type}o" %{content-length}o %{cookie1}C %{cookie2}C %{my-static-value}static %{my-env-key}env' 
     appenders:
       - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.console.impl.ConsoleAppender
+      - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.PrefixableConsoleAppender
+        config:
+          prefix: 'PREFIX' 
   - identifier: accesslog-for-es
     logPattern: "%{msec}t %D cs-uri"
     appenders:

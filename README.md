@@ -9,6 +9,7 @@ For now those features and functionalities are demoed
 * **vertx-web-accesslog** ConsoleAppender
 * **vertx-web-accesslog** LoggingAppender with Logback
 * **vertx-web-accesslog** ElasticSearchAppender (still without ES setup - to come)
+* **vertx-web-accesslog** PrefixableConsoleAppender - example of custom Appender
 
 
 
