@@ -3,17 +3,22 @@ package com.romanpierson.vertx.web;
 
 import com.romanpierson.vertx.web.accesslogger.AccessLoggerHandler;
 
+import io.reactiverse.contextual.logging.ContextualData;
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.impl.logging.Logger;
+import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 
 public class SimpleJsonResponseVerticle extends AbstractVerticle {
 
+	final Logger logger = LoggerFactory.getLogger(SimpleJsonResponseVerticle.class);
+	
 	private final String configFile;
 	
 	public SimpleJsonResponseVerticle(String configFile) {
@@ -63,6 +68,14 @@ public class SimpleJsonResponseVerticle extends AbstractVerticle {
     				.get()
     					.handler(ctx -> {
     					
+    						final String requestId = ctx.request().getParam("requestId");
+
+    						if(requestId != null) {
+    							ContextualData.put("requestId", requestId);
+    						}
+    						
+    						logger.info("Handling request");
+    						
     						final JsonObject resultJson = new JsonObject();
     					
     						resultJson.put("uri", ctx.request().uri());

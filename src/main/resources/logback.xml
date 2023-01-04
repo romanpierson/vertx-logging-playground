@@ -1,5 +1,8 @@
 <configuration>
   
+  <conversionRule conversionWord="vcl"
+                converterClass="io.reactiverse.contextual.logging.LogbackConverter"/>
+                
   <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
   	<file>${access.location}/access.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -24,7 +27,7 @@
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" level="info">
     <encoder>
-      <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%vcl{requestId:--}] %logger{36} - %msg%n</pattern>
     </encoder>
   </appender>
   

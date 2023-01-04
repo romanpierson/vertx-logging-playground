@@ -10,6 +10,7 @@ For now those features and functionalities are demoed
 * **vertx-web-accesslog** LoggingAppender with Logback
 * **vertx-web-accesslog** ElasticSearchAppender (still without ES setup - to come)
 * **vertx-web-accesslog** PrefixableConsoleAppender - example of custom Appender
+* **reactiverse-contextual-logging** Using contextual logging (MDC) with logback
 
 
 
@@ -32,5 +33,5 @@ gradle vertxDebug
 This runs a simple GET request on the app that will produce some useful access log
 
 ```java
-curl http://localhost:8080/test?foo=bar -v -H "Cookie: cookie1=cookie1Value; cookie2=cookie2Value"
+curl http://localhost:8080/test?requestId=test123 -v -H "Cookie: cookie1=cookie1Value; cookie2=cookie2Value"
 ```
