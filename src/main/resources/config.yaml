@@ -8,7 +8,7 @@ configurations:
         config:
           prefix: 'PREFIX' 
   - identifier: accesslog-for-es
-    logPattern: "%{msec}t %D cs-uri"
+    logPattern: "%{msec}t %D cs-uri %T"
     appenders:
       - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.elasticsearch.impl.ElasticSearchAppender
         config:
@@ -18,7 +18,7 @@ configurations:
             - duration
             - uri
   - identifier: accesslog-for-logback
-    logPattern: '%{}t %D "cs-uri"'
+    logPattern: '%t %D "cs-uri" %T'
     appenders:
       - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.logging.impl.LoggingAppender
         config:
