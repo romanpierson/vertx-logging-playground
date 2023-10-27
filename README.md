@@ -15,19 +15,21 @@ For now those features and functionalities are demoed
 
 
 
-## How to run the app
+## Build the app
 
-As gradle vertx plugin is used you can just start the application with 
-
-```java
-gradle vertxRun
-```
-
-or debug it with 
+Build the fatjar like this
 
 ```java
-gradle vertxDebug
+./gradlew shadowJar
 ```
+
+## Run the app
+
+
+```java
+java -jar -Daccess.location=/tmp build/libs/shadow.jar
+```
+
 
 ## Execute sample request
 
