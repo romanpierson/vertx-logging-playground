@@ -19,7 +19,7 @@ dependencies {
 	implementation "io.vertx:vertx-web:${vertxVersion}"
 	implementation "io.vertx:vertx-config-yaml:${vertxVersion}"
 	
-	implementation "com.romanpierson:vertx-web-accesslog:1.6.0"
+	implementation "com.romanpierson:vertx-web-accesslog:1.6.1"
 	
 	implementation "io.reactiverse:reactiverse-contextual-logging:1.1.2"
 	
