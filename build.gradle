@@ -7,10 +7,13 @@ repositories {
   
   mavenCentral()
   jcenter()
+  maven {
+        url "https://s01.oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 
 ext{
-	vertxVersion = '4.4.6'
+	vertxVersion = '5.0.0-SNAPSHOT'
 	
 }
 
@@ -19,7 +22,7 @@ dependencies {
 	implementation "io.vertx:vertx-web:${vertxVersion}"
 	implementation "io.vertx:vertx-config-yaml:${vertxVersion}"
 	
-	implementation "com.romanpierson:vertx-web-accesslog:1.6.0"
+	implementation "com.romanpierson:vertx-web-accesslog:5.0.0-SNAPSHOT"
 	
 	implementation "io.reactiverse:reactiverse-contextual-logging:1.1.2"
 	

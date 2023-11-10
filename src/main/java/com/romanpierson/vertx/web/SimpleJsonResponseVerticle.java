@@ -37,7 +37,9 @@ public class SimpleJsonResponseVerticle extends AbstractVerticle {
 
     	ConfigRetriever retriever = ConfigRetriever.create(vertx,  new ConfigRetrieverOptions().addStore(store));
 
-    	retriever.getConfig(result -> {
+    	retriever
+    		.getConfig()
+    		.onComplete(result -> {
     		
     		if(result.succeeded()) {
     			router
