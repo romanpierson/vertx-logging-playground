@@ -1,8 +1,18 @@
 <configuration>
   
-  <conversionRule conversionWord="vcl"
-                converterClass="io.reactiverse.contextual.logging.LogbackConverter"/>
-                
+  <conversionRule conversionWord="vcl" converterClass="io.reactiverse.contextual.logging.LogbackConverter"/>
+    ¡  
+  <appender name="AXIOM-APPLOG" class="com.romanpierson.logback.vertx.elasticsearch.appender.LogbackElasticSearchAppender" level="info">
+  	<instanceIdentifier>axiom-applicationlog</instanceIdentifier>
+  	<indexProperties>host,${HOSTNAME},level,%level,thread,%thread,message,%message,stacktrace,%ex,stacktraceHash,%exhash,logger,%logger</indexProperties>
+  </appender>
+  
+  <appender name="ES-APPLOG" class="com.romanpierson.logback.vertx.elasticsearch.appender.LogbackElasticSearchAppender" level="info">
+  	<instanceIdentifier>es-applicationlog</instanceIdentifier>
+  	<indexProperties>host,${HOSTNAME},level,%level,thread,%thread,message,%message,stacktrace,%ex,stacktraceHash,%exhash,logger,%logger</indexProperties>
+  </appender>
+  
+  
   <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
   	<file>${access.location}/access.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -37,6 +47,9 @@
     
   <root level="info">
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="AXIOM-APPLOG" />
+    <appender-ref ref="ES-APPLOG" />
+    
   </root>
   
 </configuration>

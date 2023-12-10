@@ -12,7 +12,14 @@ configurations:
     appenders:
       - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.elasticsearch.impl.ElasticSearchAppender
         config:
-          instanceIdentifier: accesslog
+          instanceIdentifier: es-accesslog
+          fieldNames:
+            - timestamp
+            - duration
+            - uri
+      - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.elasticsearch.impl.ElasticSearchAppender
+        config:
+          instanceIdentifier: axiom-accesslog
           fieldNames:
             - timestamp
             - duration

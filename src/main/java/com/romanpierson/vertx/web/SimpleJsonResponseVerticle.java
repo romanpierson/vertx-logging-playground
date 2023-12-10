@@ -58,6 +58,19 @@ public class SimpleJsonResponseVerticle extends AbstractVerticle {
     					});
     			
     			router
+				.get("/error")
+					.handler(ctx -> {
+				
+						// We want to create a NPE
+						if(true) {
+							String s = null;
+							s.trim();
+						}
+						
+						ctx.response().putHeader("Content-Type", "application/json; charset=utf-8").end();
+					});
+    			
+    			router
 					.get("/empty")
 						.handler(ctx -> {
 					

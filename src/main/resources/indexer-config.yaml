@@ -1,0 +1,45 @@
+indexScheduleInterval: 5000
+instances:
+ - identifier: es-accesslog
+   host: localhost
+   port: 9200
+   indexMode: STATIC_NAME
+   indexNameOrPattern: accesslog
+   authentication:
+     type : basic
+     config:
+       user : elastic
+       password : changeme
+ - identifier: es-applicationlog
+   host: localhost
+   port: 9200
+   indexMode: STATIC_NAME
+   indexNameOrPattern: applicationlog
+   authentication:
+     type : basic
+     config:
+       user : elastic
+       password : changeme
+ - identifier: axiom-accesslog
+   flavour: AXIOM
+   host: api.axiom.co
+   port: 443
+   indexNameOrPattern: accesslog
+   ssl: true
+   sslTrustAll: false
+   authentication:
+     type : bearer
+     config:
+       token : <TOKEN>
+ - identifier: axiom-applicationlog
+   flavour: AXIOM
+   host: api.axiom.co
+   port: 443
+   indexNameOrPattern: applicationlog
+   ssl: true
+   sslTrustAll: false
+   authentication:
+     type : bearer
+     config:
+       token : <TOKEN>
+    
