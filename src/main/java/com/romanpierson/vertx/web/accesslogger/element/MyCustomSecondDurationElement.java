@@ -36,7 +36,7 @@ public class MyCustomSecondDurationElement implements AccessLogElement{
 	}
 	
 	@Override
-	public String getFormattedValue(final JsonObject values) {
+	public Object getNativeValue(final JsonObject values) {
 	
 		return "MyCustomSecondDurations";
 		

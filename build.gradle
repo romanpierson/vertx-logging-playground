@@ -4,11 +4,12 @@ plugins {
 }
 
 repositories {
+
   mavenCentral()
 }
 
 ext{
-	vertxVersion = '4.5.0'
+	vertxVersion = '4.5.1'
 	
 }
 
@@ -17,8 +18,8 @@ dependencies {
 	implementation "io.vertx:vertx-web:${vertxVersion}"
 	implementation "io.vertx:vertx-config-yaml:${vertxVersion}"
 	
-	implementation "com.romanpierson:vertx-web-accesslog:1.6.1"
-	implementation "com.romanpierson:vertx-elasticsearch-indexer:1.2.1"
+	implementation "com.romanpierson:vertx-web-accesslog:1.7.0"
+	implementation "com.romanpierson:vertx-elasticsearch-indexer:1.3.0"
 	runtimeOnly "com.romanpierson:vertx-logback-elasticsearch-appender:1.3.0"
 	
 	implementation "io.reactiverse:reactiverse-contextual-logging:1.1.2"
