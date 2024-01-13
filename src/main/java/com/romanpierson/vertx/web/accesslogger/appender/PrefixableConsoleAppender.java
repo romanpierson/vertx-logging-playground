@@ -19,6 +19,11 @@ import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
+import static com.romanpierson.vertx.web.accesslogger.util.FormatUtility.getStringifiedParameterValues;
+
+import java.util.List;
+import java.util.Map; 
+
 /**
  * 
  * Demoing how you can create custom appender - just does same ConsoleAppender does with adding some more logging
@@ -51,28 +56,13 @@ public class PrefixableConsoleAppender implements Appender {
 	}
 	
 	@Override
-	public void push(JsonArray accessEvent) {
+	public void push(List<Object> rawAccessElementValues, Map<String, Object> internalValues) {
 		
-		Object [] parameterValues = getParameterValues(accessEvent);
-			
-		final String formattedString = String.format(this.resolvedPattern, parameterValues);
+		final String formattedString = String.format(this.resolvedPattern, getStringifiedParameterValues(rawAccessElementValues));
 			
 		System.out.println(this.prefix + " " + formattedString);
 			
 	}
 	
-	private Object[] getParameterValues(final JsonArray values){
-		
-		final String[] parameterValues = new String[values.size()];
-
-		int i = 0;
-		for (final Object xValue : values.getList()) {
-			parameterValues[i] = (String) xValue;
-			i++;
-		}
-		
-		return parameterValues;
-		
-	}
 
 }
