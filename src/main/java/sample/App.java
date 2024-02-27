@@ -1,5 +1,6 @@
 package sample;
 
+
 import com.romanpierson.vertx.elasticsearch.indexer.verticle.ElasticSearchIndexerVerticle;
 import com.romanpierson.vertx.web.SimpleJsonResponseVerticle;
 
@@ -8,9 +9,12 @@ import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
+import io.vertx.core.VertxOptions;
 import io.vertx.core.impl.logging.Logger;
 import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.core.json.JsonObject;
+import io.vertx.micrometer.MicrometerMetricsOptions;
+import io.vertx.micrometer.VertxPrometheusOptions;
 
 public class App {
 
@@ -18,7 +22,13 @@ public class App {
 	
   public static void main(String[] args) {
 		
-	  final Vertx vertx = Vertx.vertx();
+	  MicrometerMetricsOptions metricsOptions = new MicrometerMetricsOptions()
+		      .setEnabled(true)
+		      .setPrometheusOptions(new VertxPrometheusOptions().setEnabled(true));
+		    VertxOptions vertxOptions = new VertxOptions()
+		      .setMetricsOptions(metricsOptions);
+		    
+	  final Vertx vertx = Vertx.vertx(vertxOptions);
 	  
 	  // First deploy the indexer verticle
 	  // First get its configuration

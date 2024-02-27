@@ -1,0 +1,10 @@
+version: "3.0"
+
+services:
+  setup:
+    image: prom/prometheus:v2.45.3
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data:/prometheus
+    ports:
+      - 9090:9090

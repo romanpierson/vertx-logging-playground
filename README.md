@@ -14,6 +14,7 @@ For now those features and functionalities are demoed
 * **vertx-web-accesslog** MyCustomSecondDurationElement - shows how you can replace an existing pattern with your custom implementation
 * **vertx-logback-aleatsicsearch-appender** Vertx Logback ES Appender - indexing application log to ES and Axiom
 * **reactiverse-contextual-logging** Using contextual logging (MDC) with logback
+* **Slf4j API** `SimpleJsonResponseVerticle` uses Slf4J Logger API that supports eg placeholder replacing - whereas `LoggingAppender` uses just the vertx internal Logging API
 
 
 
@@ -28,10 +29,35 @@ Build the fatjar like this
 ## Run the app
 
 
+To start multiple instances on different ports pass `server.port` property, default if not provided is `8080`
+
 ```java
-java -jar -Daccess.location=/tmp build/libs/shadow.jar
+java -jar -Daccess.location=/tmp -Dserver.port=8080 build/libs/shadow.jar
 ```
 
+## Prometheus
+
+Start dockerized prometheus by 
+
+```java
+cd docker-prometheus
+docker-compose up -d
+```
+
+Adapt if needed its configuration in `config/prometheus.yml` 
+ 
+```yaml
+global: 
+  scrape_interval: 15s 
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'vertx-playground-app'
+    static_configs:
+      - targets: ['host.docker.internal:8080', 'host.docker.internal:8081']
+```
+
+Open prometheus on [http://localhost:9090](http://localhost:9090)
 
 ## Execute sample request
 
