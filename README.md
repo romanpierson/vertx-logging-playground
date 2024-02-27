@@ -6,13 +6,12 @@ This project is used to demonstrate usage of vertx-web-accesslog and other log r
 
 For now those features and functionalities are demoed
 
-* **vertx-web-accesslog** ConsoleAppender
-* **vertx-web-accesslog** LoggingAppender with Logback
-* **vertx-web-accesslog** ElasticSearchAppender - indexing to ES
-* **vertx-web-accesslog** ElasticSearchAppender - indexing to Axiom
-* **vertx-web-accesslog** PrefixableConsoleAppender - example of custom Appender
-* **vertx-web-accesslog** MyCustomSecondDurationElement - shows how you can replace an existing pattern with your custom implementation
-* **vertx-logback-aleatsicsearch-appender** Vertx Logback ES Appender - indexing application log to ES and Axiom
+* **vertx-web-accesslog** `ConsoleAppender`
+* **vertx-web-accesslog** `LoggingAppender` with Logback
+* **vertx-web-accesslog** `ElasticSearchAppender` - indexing to ES and Axiom
+* **vertx-web-accesslog** `PrefixableConsoleAppender` - example of custom Appender
+* **vertx-web-accesslog** `MyCustomSecondDurationElement` - shows how you can replace an existing pattern with your custom implementation
+* **vertx-logback-elasticsearch-appender** `Vertx Logback ES Appender` - indexing application log to ES and Axiom
 * **reactiverse-contextual-logging** Using contextual logging (MDC) with logback
 * **Slf4j API** `SimpleJsonResponseVerticle` uses Slf4J Logger API that supports eg placeholder replacing - whereas `LoggingAppender` uses just the vertx internal Logging API
 
@@ -22,7 +21,7 @@ For now those features and functionalities are demoed
 
 Build the fatjar like this
 
-```java
+```*.sh-session
 ./gradlew shadowJar
 ```
 
@@ -31,7 +30,7 @@ Build the fatjar like this
 
 To start multiple instances on different ports pass `server.port` property, default if not provided is `8080`
 
-```java
+```*.sh-session
 java -jar -Daccess.location=/tmp -Dserver.port=8080 build/libs/shadow.jar
 ```
 
@@ -39,7 +38,7 @@ java -jar -Daccess.location=/tmp -Dserver.port=8080 build/libs/shadow.jar
 
 Start dockerized prometheus by 
 
-```java
+```*.sh-session
 cd docker-prometheus
 docker-compose up -d
 ```
@@ -63,6 +62,16 @@ Open prometheus on [http://localhost:9090](http://localhost:9090)
 
 This runs a simple GET request on the app that will produce some useful access log
 
-```java
+```*.sh-session
 curl http://localhost:8080/test?requestId=test123 -v -H "Cookie: cookie1=cookie1Value; cookie2=cookie2Value"
+```
+
+## Execute random series of sample requests
+
+As we have an endpoint that delays randomized based on a from to range passed in its url its easy to create some kind of randomized traffic
+
+Eg using ab benchmark
+
+```*.sh-session
+ab -n 100 -c 10  -H 'x-ip: 81.202.235.150' http://localhost:8081/sleep/random/10/100?requestId=test123
 ```
