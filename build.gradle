@@ -1,12 +1,12 @@
 plugins {
 	id 'java'
-	id 'com.github.johnrengelman.shadow' version '8.1.1'
+	id 'com.gradleup.shadow' version '8.3.0'
 }
 
 repositories {
   
   mavenCentral()
-  jcenter()
+  
   maven {
         url "https://s01.oss.sonatype.org/content/repositories/snapshots"
     }
@@ -24,9 +24,9 @@ dependencies {
 	
 	implementation "com.romanpierson:vertx-web-accesslog:5.0.0-SNAPSHOT"
 	
-	implementation "io.reactiverse:reactiverse-contextual-logging:1.1.2"
+	implementation "io.reactiverse:reactiverse-contextual-logging:1.2.1"
 	
-	runtimeOnly "ch.qos.logback:logback-classic:1.4.11"
+	runtimeOnly "ch.qos.logback:logback-classic:1.5.6"
 	
 	
 }
@@ -48,5 +48,5 @@ sourceCompatibility='11'
 targetCompatibility='11'
 
 wrapper() {
-  gradleVersion = '8.4'
+  gradleVersion = '8.9'
 }
