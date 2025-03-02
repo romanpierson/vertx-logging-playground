@@ -1,22 +1,24 @@
 <configuration>
   
   <conversionRule conversionWord="vcl" converterClass="io.reactiverse.contextual.logging.LogbackConverter"/>
-    ¡  
+ 
+   <!--
   <appender name="AXIOM-APPLOG" class="com.romanpierson.logback.vertx.elasticsearch.appender.LogbackElasticSearchAppender" level="info">
   	<instanceIdentifier>axiom-applicationlog</instanceIdentifier>
   	<indexProperties>host,${HOSTNAME},level,%level,thread,%thread,message,%message,stacktrace,%ex,stacktraceHash,%exhash,logger,%logger</indexProperties>
   </appender>
+  -->
   
   <appender name="ES-APPLOG" class="com.romanpierson.logback.vertx.elasticsearch.appender.LogbackElasticSearchAppender" level="info">
-  	<instanceIdentifier>es-applicationlog</instanceIdentifier>
+  	<instanceIdentifier>es-applicationlog-nossl-ev-ts</instanceIdentifier>
   	<indexProperties>host,${HOSTNAME},level,%level,thread,%thread,message,%message,stacktrace,%ex,stacktraceHash,%exhash,logger,%logger</indexProperties>
   </appender>
   
   
   <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-  	<file>${access.location}/access.log</file>
+  	<file>${access.location}/access-4x.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-    	<fileNamePattern>access.%d{yyyy-MM-dd}.log</fileNamePattern>
+    	<fileNamePattern>access-4x.%d{yyyy-MM-dd}.log</fileNamePattern>
 		<maxHistory>10</maxHistory>
     </rollingPolicy>
     <encoder>
@@ -25,14 +27,14 @@
     </encoder>
   </appender>
   
-  
+  <!--
 	<appender name="ACCESS_FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
   		<discardingThreshold>0</discardingThreshold>
   		<queueSize>500</queueSize>
   		<maxFlushTime>5000</maxFlushTime>
  		<appender-ref ref="ACCESS_FILE" />
  	</appender>
-  
+  -->
   
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" level="info">
@@ -47,7 +49,7 @@
     
   <root level="info">
     <appender-ref ref="STDOUT" />
-    <appender-ref ref="AXIOM-APPLOG" />
+    <!--<appender-ref ref="AXIOM-APPLOG" />-->
     <appender-ref ref="ES-APPLOG" />
     
   </root>
