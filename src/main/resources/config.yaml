@@ -8,17 +8,22 @@ configurations:
         config:
           prefix: 'PREFIX' 
   - identifier: accesslog-for-es
-    logPattern: "%{msec}t %D cs-uri %T"
+    logPattern: "%D cs-uri %m %s %h %{User-Agent}i %{x-ip}i %B"
     appenders:
       - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.elasticsearch.impl.ElasticSearchAppender
         config:
-          instanceIdentifier: accesslog
+          instanceIdentifier: es-accesslog-nossl-ev-ts
           fieldNames:
-            - timestamp
             - duration
             - uri
+            - method
+            - status
+            - host
+            - useragent
+            - ip
+            - bytes
   - identifier: accesslog-for-logback
-    logPattern: '%t %D "cs-uri" %T'
+    logPattern: '%t %D cs-uri %m %s %h %{User-Agent}i %{x-ip}i %B'
     appenders:
       - appenderClassName : com.romanpierson.vertx.web.accesslogger.appender.logging.impl.LoggingAppender
         config:

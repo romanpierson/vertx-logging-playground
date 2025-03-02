@@ -1,20 +1,18 @@
 plugins {
 	id 'java'
-	id 'com.gradleup.shadow' version '8.3.0'
+	id 'com.gradleup.shadow' version '9.0.0-beta9'
 }
 
 repositories {
   
+  mavenLocal()
   mavenCentral()
   
-  maven {
-        url "https://s01.oss.sonatype.org/content/repositories/snapshots"
-    }
 }
 
 ext{
-	vertxVersion = '5.0.0-SNAPSHOT'
-	
+	vertxVersion = '5.0.0.CR5'
+	slfApiVersion = '2.0.17'
 }
 
 dependencies {
@@ -23,10 +21,13 @@ dependencies {
 	implementation "io.vertx:vertx-config-yaml:${vertxVersion}"
 	
 	implementation "com.romanpierson:vertx-web-accesslog:5.0.0-SNAPSHOT"
+	implementation "com.romanpierson:vertx-logback-elasticsearch-appender:5.0.0-SNAPSHOT"
+	implementation "com.romanpierson:vertx-elasticsearch-indexer:5.0.0-SNAPSHOT"
 	
-	implementation "io.reactiverse:reactiverse-contextual-logging:1.2.1"
+	implementation "io.reactiverse:reactiverse-contextual-logging-logback:2.0.0.CR1"
 	
-	runtimeOnly "ch.qos.logback:logback-classic:1.5.6"
+	implementation "org.slf4j:slf4j-api:${slfApiVersion}"
+	runtimeOnly "ch.qos.logback:logback-classic:1.5.17"
 	
 	
 }
@@ -44,9 +45,11 @@ jar {
     }
 }
 
-sourceCompatibility='11'
-targetCompatibility='11'
+java {
+    sourceCompatibility='11'
+	targetCompatibility='11'
+}
 
 wrapper() {
-  gradleVersion = '8.9'
+  gradleVersion = '8.13'
 }

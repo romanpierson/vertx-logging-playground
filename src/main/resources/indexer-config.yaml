@@ -1,0 +1,27 @@
+indexScheduleInterval: 5000
+instances:
+ - identifier: es-applicationlog-nossl-ev-ts
+   host: localhost
+   port: 9200
+   indexMode: DATE_PATTERN_EVENT_TIMESTAMP
+   indexNameOrPattern: applicationlog-5x-yyyyMMdd
+   ssl: false
+   sslTrustAll: false
+   authentication:
+     type : basic
+     config:
+       user : elastic
+       password : changeme
+ - identifier: es-accesslog-nossl-ev-ts
+   host: localhost
+   port: 9200
+   indexMode: DATE_PATTERN_EVENT_TIMESTAMP
+   indexNameOrPattern: accesslog-5x-yyyyMMdd
+   ssl: false
+   sslTrustAll: false
+   authentication:
+     type : basic
+     config:
+       user : elastic
+       password : changeme
+    

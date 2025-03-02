@@ -14,8 +14,13 @@ package com.romanpierson.vertx.web.accesslogger.appender;
 
 import com.romanpierson.vertx.web.accesslogger.AccessLoggerConstants;
 
-import io.vertx.core.impl.logging.Logger;
-import io.vertx.core.impl.logging.LoggerFactory;
+import static com.romanpierson.vertx.web.accesslogger.util.FormatUtility.getStringifiedParameterValues;
+
+import java.util.List;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
@@ -51,28 +56,12 @@ public class PrefixableConsoleAppender implements Appender {
 	}
 	
 	@Override
-	public void push(JsonArray accessEvent) {
+	public void push(List<Object> rawAccessElementValues, Map<String, Object> internalValues) {
 		
-		Object [] parameterValues = getParameterValues(accessEvent);
-			
-		final String formattedString = String.format(this.resolvedPattern, parameterValues);
+		final String formattedString = String.format(this.resolvedPattern, getStringifiedParameterValues(rawAccessElementValues));
 			
 		System.out.println(this.prefix + " " + formattedString);
 			
 	}
 	
-	private Object[] getParameterValues(final JsonArray values){
-		
-		final String[] parameterValues = new String[values.size()];
-
-		int i = 0;
-		for (final Object xValue : values.getList()) {
-			parameterValues[i] = (String) xValue;
-			i++;
-		}
-		
-		return parameterValues;
-		
-	}
-
 }

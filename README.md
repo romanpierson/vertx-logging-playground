@@ -8,9 +8,11 @@ For now those features and functionalities are demoed
 
 * **vertx-web-accesslog** ConsoleAppender
 * **vertx-web-accesslog** LoggingAppender with Logback
-* **vertx-web-accesslog** ElasticSearchAppender (still without ES setup - to come)
+* **vertx-web-accesslog** ElasticSearchAppender - indexing to ES
+* **vertx-web-accesslog** ElasticSearchAppender - indexing to Axiom
 * **vertx-web-accesslog** PrefixableConsoleAppender - example of custom Appender
 * **vertx-web-accesslog** MyCustomSecondDurationElement - shows how you can replace an existing pattern with your custom implementation
+* **vertx-logback-elasticcsearch-appender** Vertx Logback ES Appender - indexing application log to ES and Axiom
 * **reactiverse-contextual-logging** Using contextual logging (MDC) with logback
 
 

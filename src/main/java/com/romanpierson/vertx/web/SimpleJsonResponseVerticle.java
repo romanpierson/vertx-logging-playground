@@ -1,6 +1,9 @@
 package com.romanpierson.vertx.web;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.romanpierson.vertx.web.accesslogger.AccessLoggerHandler;
 
 import io.reactiverse.contextual.logging.ContextualData;
@@ -9,8 +12,6 @@ import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
-import io.vertx.core.impl.logging.Logger;
-import io.vertx.core.impl.logging.LoggerFactory;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;

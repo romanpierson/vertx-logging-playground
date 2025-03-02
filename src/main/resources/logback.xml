@@ -1,29 +1,33 @@
 <configuration>
   
   <conversionRule conversionWord="vcl"
-                converterClass="io.reactiverse.contextual.logging.LogbackConverter"/>
-                
+                converterClass="io.reactiverse.contextual.logging.logback.LogbackConverter"/>
+             
   <appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-  	<file>${access.location}/access.log</file>
+  	<file>${access.location}/access-5x.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
     	<fileNamePattern>access.%d{yyyy-MM-dd}.log</fileNamePattern>
 		<maxHistory>10</maxHistory>
     </rollingPolicy>
     <encoder>
      	<pattern>%msg%n</pattern>
-    	<immediateFlush>true</immediateFlush>
     </encoder>
+    <immediateFlush>true</immediateFlush>
   </appender>
   
-  
+  <!--  
 	<appender name="ACCESS_FILE_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
   		<discardingThreshold>0</discardingThreshold>
   		<queueSize>500</queueSize>
   		<maxFlushTime>5000</maxFlushTime>
  		<appender-ref ref="ACCESS_FILE" />
  	</appender>
-  
-  
+  -->
+  <appender name="ES" class="com.romanpierson.logback.vertx.elasticsearch.appender.LogbackElasticSearchAppender" level="info">
+  	<instanceIdentifier>es-applicationlog-nossl-ev-ts</instanceIdentifier>
+  	<indexProperties>host,${HOSTNAME},level,%level,thread,%thread,message,%message,stacktrace,%ex,stacktraceHash,%exhash,STATIC_NAME,STATIC_VALUE,logger,%logger</indexProperties>
+
+  </appender>
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" level="info">
     <encoder>
@@ -31,12 +35,17 @@
     </encoder>
   </appender>
   
+  
   <logger name="accesslog" level="info" additivity="false">
       <appender-ref ref="ACCESS_FILE" />
     </logger>
     
+    
   <root level="info">
+  
     <appender-ref ref="STDOUT" />
+    <appender-ref ref="ES" />
+
   </root>
   
 </configuration>
